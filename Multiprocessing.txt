@@ -1,0 +1,201 @@
+
+import threading
+import time
+#job run
+
+def func1():
+    time.sleep(1)
+    jobA =  open("C:\\Users\\christopher.procum\\Desktop\\Jobs\\1.txt", 'r')
+    fileA = jobA.readline(28)
+    print (fileA)
+
+    time.sleep(7)
+
+    #Job state
+    with open ("C:\\Users\\christopher.procum\\Desktop\\Jobs\\1.txt", "r") as file:
+        lastLine = file.readline()
+        for lastLine in file:
+            pass
+    
+    
+        print(lastLine)
+    
+    jobA.close()
+    
+    
+    
+ 
+def func2():
+    time.sleep(2)
+    jobA =  open("C:\\Users\\christopher.procum\\Desktop\\Jobs\\2.txt", 'r')
+    fileA = jobA.readline(28)
+    print (fileA)
+
+    time.sleep(8)
+
+    #Job state
+    with open ("C:\\Users\\christopher.procum\\Desktop\\Jobs\\2.txt", "r") as file:
+        lastLine = file.readline()
+        for lastLine in file:
+            pass
+    
+    
+        print(lastLine)    
+    
+    
+    
+def func3():
+    time.sleep(3)
+    jobA =  open("C:\\Users\\christopher.procum\\Desktop\\Jobs\\3.txt", 'r')
+    fileA = jobA.readline(28)
+    print (fileA)
+
+    time.sleep(6)
+
+    #Job state
+    with open ("C:\\Users\\christopher.procum\\Desktop\\Jobs\\3.txt", "r") as file:
+        lastLine = file.readline()
+        for lastLine in file:
+            pass
+    
+    
+        print(lastLine)    
+        
+        
+        
+def func4():
+    time.sleep(4)
+    jobA =  open("C:\\Users\\christopher.procum\\Desktop\\Jobs\\4.txt", 'r')
+    fileA = jobA.readline(28)
+    print (fileA)
+
+    time.sleep(6)
+
+    #Job state
+    with open ("C:\\Users\\christopher.procum\\Desktop\\Jobs\\4.txt", "r") as file:
+        lastLine = file.readline()
+        for lastLine in file:
+            pass
+    
+    
+        print(lastLine)  
+        
+        
+        
+def func5():
+    time.sleep(5)
+    jobA =  open("C:\\Users\\christopher.procum\\Desktop\\Jobs\\5.txt", 'r')
+    fileA = jobA.readline(28)
+    print (fileA)
+
+    time.sleep(9)
+
+    #Job state
+    with open ("C:\\Users\\christopher.procum\\Desktop\\Jobs\\5.txt", "r") as file:
+        lastLine = file.readline()
+        for lastLine in file:
+            pass
+    
+    
+        print(lastLine)  
+
+def func6():
+    time.sleep(6)
+    jobA =  open("C:\\Users\\christopher.procum\\Desktop\\Jobs\\6.txt", 'r')
+    fileA = jobA.readline(28)
+    print (fileA)
+
+    time.sleep(6)
+
+    #Job state
+    with open ("C:\\Users\\christopher.procum\\Desktop\\Jobs\\6.txt", "r") as file:
+        lastLine = file.readline()
+        for lastLine in file:
+            pass
+    
+    
+        print(lastLine)   
+        
+        
+
+def func7():
+    time.sleep(7)
+    jobA =  open("C:\\Users\\christopher.procum\\Desktop\\Jobs\\7.txt", 'r')
+    fileA = jobA.readline(28)
+    print (fileA)
+
+    time.sleep(6)
+
+    #Job state
+    with open ("C:\\Users\\christopher.procum\\Desktop\\Jobs\\7.txt", "r") as file:
+        lastLine = file.readline()
+        for lastLine in file:
+            pass
+    
+    
+        print(lastLine)   
+    
+ 
+#Starts each function simultaneousely 
+
+Thread1 = threading.Thread(target = func1)
+Thread2 = threading.Thread(target = func2)
+Thread3 = threading.Thread(target = func3)
+Thread4 = threading.Thread(target = func4)
+Thread5 = threading.Thread(target = func5)
+Thread6 = threading.Thread(target = func6)
+Thread7 = threading.Thread(target = func7)
+
+Thread1.start()
+Thread2.start()
+Thread3.start()
+Thread4.start()
+Thread5.start()
+Thread6.start()
+Thread7.start()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+

@@ -1,0 +1,320 @@
+
+#DON'T FORGET TO PRINT AN INTRO AND DIRECTIONS
+
+
+inventory = []
+rooms = {
+        'Main Lobby': {'South': "Balcony", 'West': 'Computer Room', 'North': 'Transaction Room', 'East': 'Treasury', "exit": "exit"},
+        "Balcony": {'North': 'Main Lobby', 'East': 'Media Room', "exit": "exit"},
+        'Media Room': {'West': "Balcony", "exit": "exit"},
+        'Computer Room': {'East': 'Main Lobby', 'exit': 'exit'},
+        'Transaction Room': {'South': 'Main Lobby', 'East': 'Stock Room', "exit": "exit"},
+        'Stock Room': {'West': 'Transaction Room', "exit": "exit"},
+        'Treasury': {'West': 'Main Lobby', 'North': 'Main Office', "exit": "exit"},
+        'Main Office':{'n': 'Treasury', "exit": "exit", "y": "Yes"}
+    }
+#Starting @ the Main Lobby. Not to confuse with the Main Office.
+
+#----------------------------------------PICKUP ITEM FUNCTION-------------------------------------------------------------------------------------
+def pickup_item(room):
+    global inventory
+    
+    item_room = room
+    if "Megaphone" not in inventory:        
+        if item_room == "Balcony":
+            inventory.append("Megaphone")
+            print("\nYou have acquired a megaphone to rally reinforcements!\n\n\nINVENTORY = {}".format(inventory))
+    if "Cellphone" not in inventory:        
+        if item_room == "Media Room":
+            inventory.append("Cellphone")
+            print("You have acquired a cellphone with Elon Musk's twitter account on it! Use this to tweet about the stock and make it go brrrrrr.\n\n\nINVENTORY = {}".format(inventory))
+    if "Reddit Account" not in inventory:
+        if item_room == "Computer Room":
+            inventory.append("Reddit Account")
+            print("\nYou have created a Reddit account in which you subscribe to the subreddit WallstreetBets. This will help you gain followers.\n\n\nINVENTORY = {}".format(inventory))
+    if "Money" not in inventory:
+        if item_room == "Transaction Room":
+            inventory.append("Money")
+            print("\nYou now have a large sum of money to invest in a stock that is shorted. Find that stock and buy buy buy!\n\n\nINVENTORY = {}".format(inventory))
+    if "Heavily Shorted Stock**" not in inventory:
+        if item_room == "Stock Room":
+            inventory.append("Heavily Shorted Stock")
+            print("""\nYou have found a stock that has been shorted heavily by large hedge funds. Buy this stock, and gain followers to buy as well. Increase demand and create a short squeeze!\n\n\nINVENTORY = {}""".format(inventory))
+    if "Diamonds" not in inventory:
+        if item_room == "Treasury":
+            inventory.append("Diamonds")
+            print("""\nYou have found diamonds. Use the magic of these diamonds to give yourself powerful diamond hands. This will give you extreme resilience and keep you from selling your stock, even when times aren't so promising.\n\n\nINVENTORY = {}""".format(inventory))
+#------------------------------------------MAIN OFFICE FUNCTION----------------------------------------------------------------------
+def main_office (): #LAST ROOM.
+    print()
+    print("\nYou enter the Main office where the Evil Vladmir Tenev and Hedge fund owners hide and scheme away. Do you wish to continue? y/n")
+    user_input = rooms['Main Office']
+    x = user_input.get(input())
+    if x == "exit":
+        exit()
+    if x == "Treasury":
+        treasury()
+    if x == "Yes":
+        attack = len(inventory) * 10  #if all items are collected, attack = 60. boss hp = 60
+        vlad_hp = 60 - attack
+        if vlad_hp != 0:
+            print("""\nYou attempt to take down Vladimir and the hedge fund firms, but they came more prepared. Your followers sell their stock in fear causing the stock price to lower
+even more. You tell people to hold but the stock price keeps plummeting and more and more people sell. You are then asked to attest in court and are wrongfully found guilty of
+illegally manipulating the stock market. Your future is dull and your life spirals in despair. Maybe more preparation next time will help?""")
+            close = input("\n\n\nThanks for playing, type 'y' to exit ")
+            if close == 'y':
+                exit()
+            else:
+                print('invalid input')
+            
+        elif vlad_hp == 0:
+            print("""You face Vladmir of Robinhood and the hedge fund firms trying to take you down. You have picked out a stock that has been shorted immensely upwards of 100%.
+as you invest an extroardinary amount into this stock with the money you found and you share it on your Reddit Account that you made. This gathers a large following
+and entices even more people to invest. This raises demand and price starts to rise as supply starts to lower. As this happens the hedge fund firms are losing billions
+on the interest they are paying for their shorts. People start to back you even more as you discuss the storming of the Robinhood headquarters! "We must take down the CEO
+of Robinhood for trying to ruin our chances to finally make some money and take the side of the large hedge fund firms like Citadel!" you exclaim on your Megaphone. As you make it to the Main Office
+you see that Vladmir and the hedge fund owners are bleeding money and beg you to stop, even after all of their attempts to take you down. You take out your cellphone, log on to Elon Musk's
+Twitter account and tweet "Stonks!" towards your stock. Prices rise even more. Hedge funds are forced to buy back the stock they once shorted at insane amounts. Demand rises and
+the squeeze has finally happened. Your diamond hands have paid off. You have held through the worst of times to make it to the best of times. They are finally defeated and people look at you
+as the real 'Robinhood'.""")
+           
+
+    while x != "Treasury" or x != "Yes":
+        print("\nInvalid input, try again")
+        user_input = rooms['Main Office']
+        x = user_input.get(input())
+        if x == "exit":
+            exit("See you next time!")
+        if x == "Treasury":
+            treasury()           
+#------------------------------------------TREASURY FUNCTION----------------------------------------------------------------------
+def treasury ():
+    print()
+    print("\nRoom: Treasury\n")
+    if "Diamonds" not in inventory:
+        pickup = input("You come across Diamonds.\n")
+        if pickup == "Get item":
+            pickup_item("Treasury")
+        if pickup != "Get item":
+            print("You decide not to pick up the Diamonds.")
+
+    print("-"*110)  
+    print("\nChoose your next direction")
+    user_input = rooms["Treasury"]
+    x = user_input.get(input())
+    
+    if x == "Main Lobby":
+        main_lobby()
+    if x == "Main Office":
+        main_office()
+    if x == "exit":
+        exit("See you next time!")
+    
+    while x != "Main Lobby" or x != "Main Office":
+        print("\nInvalid input, try again")
+        user_input = rooms["Treasury"]
+        x = user_input.get(input())
+        if x == "Main Lobby":
+            main_lobby()
+        if x == "Main Office":
+            main_office()
+        if x == "exit":
+            exit("See you next time!")
+#------------------------------------------STOCK ROOM FUNCTION----------------------------------------------------------------------
+def stock_room():
+    print()
+    print("\nRoom: Stock Room\n")
+    if "Heavily Shorted Stock" not in inventory:
+        pickup = input("You come across a heavily shorted stock.\n")
+        if pickup == "Get item":
+            pickup_item("Stock Room")
+        if pickup != "Get item":
+            print("You decide not to pick up the Heavily Shorted Stock.")
+    print("-"*110)
+    print("\nChoose your next direction")
+    user_input = rooms["Stock Room"]
+    x = user_input.get(input())
+    
+    if x == "Transaction Room":
+        transaction_room()
+    if x == "exit":
+        exit("See you next time")
+
+    while x != "Transaction Room":
+        print("\nInvalid Input, try again")
+        user_input = rooms["Stock Room"]
+        x = user_input.get(input())
+        if x == "Transaction Room":
+            transaction_room()
+        if x == "exit":
+            exit("See you next time")       
+#------------------------------------------COMPUTER ROOM FUNCTION----------------------------------------------------------------------
+def computer_room():
+    print()
+    print("\nRoom: Computer Room\n")
+    if "Reddit Account" not in inventory:
+        pickup = input("You come across a computer in which you could create a reddit account\n")
+        if pickup == "Get item":
+            pickup_item("Computer Room")
+        if pickup != "Get item":
+            print("You decide not to create a reddit account.")
+    print("-"*110)       
+    print("\nChoose your next direction\n")
+    user_input = rooms["Computer Room"]
+    x = user_input.get(input())
+    
+    if x == "Main Lobby":
+        main_lobby()
+    if x == "exit":
+        exit("See you next time!")
+
+    while x != "Main Lobby" or x != "exit":
+        print("\nInvalid input, try again")
+        user_input = rooms["Computer Room"]
+        x = user_input.get(input())
+        if x == "exit":
+            exit("See you next time!")
+        elif x == "Main Lobby":
+            main_lobby()
+#------------------------------------------TRANSACTION ROOM FUNCTION----------------------------------------------------------------------
+def transaction_room():
+    print()
+    print("\nRoom: Transaction Room\n")
+    if "Money" not in inventory:
+        pickup = input("You come across a large sum of money\n")
+        if pickup == "Get item":
+            pickup_item("Transaction Room")
+        if pickup != "Get item":
+            print("You decide not to pick up the Money.")
+            
+    print("-"*110)        
+    print("\nChoose your next direction")
+    user_input = rooms["Transaction Room"]
+    x = user_input.get(input())
+    if x == "Main Lobby":
+        main_lobby()
+    if x == "Stock Room":
+        stock_room()
+    if x == "exit":
+        exit("See you next time!")
+        
+    while x != "Main Lobby" or x != "Stock Room":
+        print("\nInvalid input, try again")
+        user_input = rooms["Transaction Room"]
+        x = user_input.get(input())
+        if x == "exit":
+            exit("See you next time!")
+        elif x == "Main Lobby":
+            main_lobby()
+        elif x == "Stock Room":
+            stock_room()
+
+#------------------------------Media Room FUNCTION-------------------------------------------------------------
+
+def media_room():#Media Room function
+    print()
+    print("\nRoom: Media Room\n")
+    if "Cellphone" not in inventory:
+        pickup = input("You come across a Cellphone\n")
+        if pickup == "Get item":
+            pickup_item("Media Room")                                   #Pick up item prompt
+        if pickup != "Get item":
+            print("You decide not to pick up the Diamonds.")
+            
+    print("-"*110)        
+    print("\nChoose your next direction")
+    user_input = rooms["Media Room"]
+    x = user_input.get(input())
+    
+    if x == "Balcony":
+        balcony()
+        
+    
+    if x == "exit":                 #EXIT COMMAND
+        exit("See you next time!")
+        
+    while x != "Balcony" or x != "exit":                  #if input is not WEST you get prompted to try again and loop until input IS west. 
+        print("\nInvalid input, try again")
+        user_input = rooms["Media Room"]
+        x = user_input.get(input())
+        if x == "exit":
+            exit("See you next time!")  #EXIT COMMAND PUT IN LOOP
+        elif x == "Balcony":
+            balcony()
+
+#------------------------------Balcony FUNCTION-------------------------------------------------------------
+
+def balcony(): #Balcony Function
+    print()
+    print("\nRoom: Balcony\n")
+    if "Megaphone" not in inventory:
+        pickup = input("You come across a Megaphone.\n")
+        if pickup == "Get item":
+            pickup_item("Balcony")                                      #Gives the user the option to type "Get item". If not typed it moves on and you don't pick up the item.
+        if pickup != "Get item":
+            print("You decide not to pick up the Megaphone.")
+    print("-"*110)
+    print("\nChoose your next direction")
+    user_input = rooms["Balcony"]                                       #prompts for next direction North South East West.
+    x = user_input.get(input()) 
+    
+    
+    if x == "Main Lobby":
+        main_lobby()
+        
+    if x == "Media Room":       #if x is "Media Room" the Media Room function is called
+        media_room()
+    if x == "exit":
+            exit("See you next time!")   #EXIT COMMAND
+  
+    while x != "Main Lobby" or x != "Media Room":   #Loop until a correct input is submited
+        print("\nInvalid input, try again")
+        user_input = rooms["Balcony"]
+        x = user_input.get(input())
+        if x == "Main Lobby":
+            main_lobby()
+        if x == "Media Room":
+            media_room()
+        if x == "exit":
+            exit("See you next time!")  #EXIT COMMAND PUT IN LOOP
+                                         
+#--------------------------------------Main Lobby FUNCTION---------------------------------------------------
+def main_lobby():   #Main Lobby Function
+    print("Room: Main Lobby")
+    print("-"*110)
+    user_input = rooms["Main Lobby"] #Assigns user_input to the "Main Lobby" dictionary inside the "rooms" dictionary.
+    x = user_input.get(input())      #Allows user to input what key will be pulled from the "Main Lobby" dictionary.
+
+    if x == "Balcony":    
+        balcony()
+    if x == "Computer Room":
+        computer_room()
+    if x == "Transaction Room":
+        transaction_room()
+    if x == "Treasury":
+        treasury()
+    if x == "Main Office":
+        main_office()
+    if x == "exit":
+            exit("See you next time!")
+
+    while x != "Balcony" or x != "Computer Room" or x != "Transaction Room" or x != "Treasury":           #If x is not valued "Balcony" it will prompt you to keep guessing until it is.
+        print("\nInvalid input, try again")
+        user_input = rooms["Main Lobby"]
+        x = user_input.get(input())
+        if x == "Computer Room":
+            computer_room()
+        if x == "Balcony":    
+            balcony()
+        if x == "Transaction Room":
+            transaction_room()
+        if x == "Treasury":
+            treasury()
+        if x == "exit":
+            exit("See you next time!")
+        
+            
+main_lobby()
+  
+
+
